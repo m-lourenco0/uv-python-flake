@@ -13,7 +13,7 @@ This repository provides a Nix flake template for setting up a Python developmen
 - **Flexible**: Works with `nix develop` or `direnv` for automatic environment activation.
 
 ## Prerequisites
-- **Nix**: Installed with flake support enabled (`experimental-features = nix-command flakes` in `~/.config/nix/nix.conf`).
+- **Nix**: Installed with flake support enabled (`experimental-features = "nix-command" "flakes"` in `~/.config/nix/nix.conf`).
 - **NixOS**: Optimized for NixOS, though adaptable to other systems with minor tweaks.
 - **Optional**: `direnv` for automatic environment loading (install with `nix-env -iA nixpkgs.direnv` and hook into your shell).
 
@@ -27,9 +27,9 @@ This repository provides a Nix flake template for setting up a Python developmen
    ```
 
 2. **Initialize the Flake**:
-   - If this repository is hosted on Git (e.g., `github:yourusername/uv-python-nix`):
+   - If you want to use from my repo directly (e.g., `github:m-lourenco0/uv-python-flake`):
      ```bash
-     nix flake init -t github:yourusername/uv-python-nix
+     nix flake init -t github:m-lourenco0/uv-python-flake
      ```
    - If using locally (e.g., from `~/nix-templates/uv-python`):
      ```bash
@@ -78,6 +78,10 @@ This repository provides a Nix flake template for setting up a Python developmen
 - Use the virtual environment’s Python directly:
   ```bash
   python my_script.py
+  ```
+  or
+  ```bash
+  uv run my_script.py
   ```
 
 ### Rebuilding the Environment
@@ -180,8 +184,3 @@ Feel free to fork this repository, submit issues, or pull requests to improve co
 This project is licensed under the MIT License.
 
 ---
-
-### Notes
-- **Assumptions**: I assumed you’re using this as a template repo, so I included initialization instructions. Adjust the Git URL if you haven’t hosted it yet.
-- **UV Note**: Updated to use `uv init` (as in your latest config) instead of `uv venv` followed by manual activation, reflecting `uv`’s project management approach.
-- **Detail Level**: Kept it detailed but accessible, suitable for both beginners and experienced Nix users.
