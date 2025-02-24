@@ -8,7 +8,15 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+    # Define top-level templates output
+    {
+      templates = {
+        default = {
+          description = "A Python development environment with uv for NixOS";
+          path = ./.;  # Points to the root of the flake
+        };
+      };
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
         pkgsUnstable = import nixpkgs-unstable { inherit system; };
@@ -37,14 +45,6 @@
             echo "Python development environment ready!"
             echo "Use 'uv add <package>' to install Python packages in the uv project."
           '';
-        };
-
-        # Add templates output for nix flake init
-        templates = {
-          default = {
-            description = "A Python development environment with uv for NixOS";
-            path = ./.;  # Points to the current directory (root of the flake)
-          };
         };
       });
 }
