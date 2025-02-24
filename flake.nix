@@ -47,6 +47,14 @@
             echo "Use 'uv add <package>' to install Python packages in the uv project."
           '';
         };
+
+        # Add templates output for nix flake init
+        templates = {
+          default = {
+            description = "A python development environment with uv for NixOS";
+            path = ./.;
+          };
+        };
     });
 }
 
